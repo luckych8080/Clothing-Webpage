@@ -1,7 +1,18 @@
 const express = require('express');
 const port = 8080;
 const ejsMate = require('ejs-mate');
+const mongoose = require('mongoose');
 const path = require('path');
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/red1947';
+
+mongoose.connect(dbUrl);
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Connection error'));
+db.once("open", () => {
+    console.log("Database connected");
+});
 
 
 const app = express();
@@ -15,8 +26,8 @@ app.get('/', function (req, res) {
     res.send('hello world')
 })
 
-app.get('/collections/all-products', (req, res) => {
-    res.render('collections/allproducts');
+app.get('/products/all-products', (req, res) => {
+    res.render('products/allproducts');
 })
 
 
@@ -25,18 +36,18 @@ app.get('/collections/all-products', (req, res) => {
 
 
 
-app.get('/login', (req, res)=>{
-    res.render('users/login')
-})
+// app.get('/login', (req, res)=>{
+//     res.render('users/login')
+// })
 
-app.post('/login', (req, res)=>{
-    res.render('users/login')
-})
+// app.post('/login', (req, res)=>{
+//     res.render('users/login')
+// })
 
 
-app.get('/register', (req, res)=>{
-    res.render('users/register')
-})
+// app.get('/register', (req, res)=>{
+//     res.render('users/register')
+// })
 
 app.listen(port, () => {
     console.log(`Serving on localhost:${port}`)
