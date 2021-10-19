@@ -11,26 +11,25 @@ const productSchema = new Schema({
     name: String,
     images: String,
     price: Number,
-    description: String,
-    location: String,
     size: {
-        type: Schema.Types.ObjectId,
-        ref: 'Size'
+        type: String,
+        lowercase: true,
+        enum: ['s', 'm', 'l']
     },
     color: String,
+    material: String,
+    washcare: String,
+    description: String,
     // author: {
     //     type: Schema.Types.ObjectId,
     //     ref: 'User'
     // },
-    tag: {
-
-    },
-    reviews: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Review'
-        }
-    ]
+    // reviews: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Review'
+    //     }
+    // ]
 });
 
 module.exports = mongoose.model('Products', productSchema);
