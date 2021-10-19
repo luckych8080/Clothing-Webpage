@@ -1,14 +1,63 @@
 <% layout('layouts/boilerplate') %>
 
-
-<div class="container ">
-    <div class="d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
+    <div class="container mb-3">
+        <div class="d-flex justify-content-center">
+            <div class="card" style="width: 25rem;">
                 <div class="card-body">
-                  <h5 class="card-title">New Product</h5>
-                  <form action=""><label for=""></label>
-                      <input type="text" >
-                  </form>
+                    <h5 class="card-title">New Product</h5>
+                    <form action="/products" method="POST" novalidate class="validated-form"
+                        enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name" name="product[name]"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <div class="input-group ">
+                                <span class="input-group-text">&#8377;</span>
+                                <input type="number" class="form-control" aria-label="Amount" name="product[price]"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="size">Size</label>
+                            <div class="input-group">
+                                <select class="form-select" id="size" name="product[size]" required>
+                                    <option value="s">Small</option>
+                                    <option value="m">Medium</option>
+                                    <option value="l">Large</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="color" class="form-label">Color picker</label>
+                            <input type="color" class="form-control form-control-color" id="color" value="#fff"
+                                title="Choose your color" name="product[color]" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="material" class="form-label">Material</label>
+                            <input type="text" class="form-control" id="material" name="product[material]" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="washcare" class="form-label">Wash Care</label>
+                            <textarea class="form-control" id="washcare" cols="30" rows="5" name="product[washcare]"
+                                required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" name="description" id="description" cols="30" rows="5"
+                                name="product[description]" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+
+                    <div class="mb-3">
+                        <a class="btn btn-secondary" href="/products">Cancel</a>
+                    </div>
                 </div>
+            </div>
+        </div>
     </div>
-</div>
