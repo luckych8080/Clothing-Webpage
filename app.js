@@ -26,28 +26,33 @@ app.get('/', function (req, res) {
     res.send('hello world')
 })
 
-app.get('/products/all-products', (req, res) => {
-    res.render('products/allproducts');
+app.get('/products', (req, res) => {
+    res.render('product/products');
 })
 
 
 
 
 
+app.get('/products/new', (req, res)=>{
+    res.render('product/new')
+})
 
 
-// app.get('/login', (req, res)=>{
-//     res.render('users/login')
-// })
+
+
+app.get('/login', (req, res)=>{
+    res.render('users/login')
+})
 
 // app.post('/login', (req, res)=>{
 //     res.render('users/login')
 // })
 
 
-// app.get('/register', (req, res)=>{
-//     res.render('users/register')
-// })
+app.get('/register', (req, res)=>{
+    res.render('users/register')
+})
 
 app.listen(port, () => {
     console.log(`Serving on localhost:${port}`)

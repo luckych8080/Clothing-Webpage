@@ -14,15 +14,17 @@ const productSchema = new Schema({
     description: String,
     location: String,
     size: {
-        type: String,
-        lowercase: true,
-        enum: ['s', 'm', 'l']
+        type: Schema.Types.ObjectId,
+        ref: 'Size'
     },
     color: String,
     // author: {
     //     type: Schema.Types.ObjectId,
     //     ref: 'User'
     // },
+    tag: {
+
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,
