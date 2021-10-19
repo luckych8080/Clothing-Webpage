@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="container ">
+        <div class="d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= product.name %>
+                    </h5>
+                    <h3 class="card-text">
+                        &#8377;<%= product.price %>
+                    </h3>
+                    <p class="card-text">
+                        <%= product.description %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
