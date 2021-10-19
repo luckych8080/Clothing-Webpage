@@ -14,7 +14,17 @@
                     <p class="card-text">
                         <%= product.description %>
                     </p>
+                    <div class="d-flex justify-content-between">
+                        <a href="/products/<%= product._id %>/edit">
+                            <button class="btn btn-info">Edit</button>
+                        </a>
+                        <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>

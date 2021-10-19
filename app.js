@@ -43,7 +43,7 @@ app.post('/products', async (req, res) => {
     const product = new Product(req.body.product);
     console.log(product);
     await product.save();
-    res.redirect(`/products`)
+    res.redirect(`/products/${product._id}`)
 })
 
 app.get('/products/:id', async (req, res) => {
@@ -51,22 +51,22 @@ app.get('/products/:id', async (req, res) => {
     res.render('products/show', { product });
 });
 
-// app.get('/products/:id/edit', async (req, res) => {
-//     const product = await Product.findById(req.params.id)
-//     res.render('products/edit', { product });
-// })
+app.get('/products/:id/edit', async (req, res) => {
+    const product = await Product.findById(req.params.id)
+    res.render('products/edit', { product });
+})
 
-// app.put('/products/:id', async (req, res) => {
-//     const { id } = req.params;
-//     const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
-//     res.redirect(`/products/${product._id}`)
-// });
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
+    res.redirect(`/products/${product._id}`)
+});
 
-// app.delete('/products/:id', async (req, res) => {
-//     const { id } = req.params;
-//     await Product.findByIdAndDelete(id);
-//     res.redirect('/products');
-// })
+app.delete('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    await Product.findByIdAndDelete(id);
+    res.redirect('/products');
+})
 
 // app.get('/login', (req, res)=>{
 //     res.render('users/login')
