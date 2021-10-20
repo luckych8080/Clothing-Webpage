@@ -23,12 +23,12 @@ router.post('/', catchAsync(async (req, res) => {
 }))
 
 router.get('/:id',  catchAsync(async (req, res) => {
-    const product = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id).populate('reviews');
     res.render('products/show', { product });
 }));
 
 router.get('/:id/edit', catchAsync(async (req, res) => {
-    const product = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id);
     res.render('products/edit', { product });
 }))
 

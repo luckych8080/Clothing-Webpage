@@ -3,6 +3,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Product = require('./models/product')
+const Review = require('./models/review');
+
 const ejsMate = require('ejs-mate');
 const productsRoutes = require('./routes/products');
 
@@ -51,8 +53,23 @@ app.get('/', function (req, res) {
 app.use("/products", productsRoutes);
 
 
+app.post("/products/:id/reviews", async(req, res)=>{
+    const product = await Product.findById(req.params.id);
+    const review = new Review(req.body.review);
+    // review.author = req.user._id;
+    product.reviews.push(review);
+    console.log(product, review)
+    await review.save();
+    await product.save();
+    res.redirect(`/products/${product._id}`);
+})
 
-
+app.delete('/products/:id/reviews/:reviewId', (async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Product.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/products/${id}`);
+}))
 
 app.all('*', (req, res, next)=>{
     next(new ExpressError('Page not found', 404));
