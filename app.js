@@ -51,6 +51,9 @@ app.get('/', function (req, res) {
 app.use("/products", productsRoutes);
 
 
+
+
+
 app.all('*', (req, res, next)=>{
     next(new ExpressError('Page not found', 404));
 });
