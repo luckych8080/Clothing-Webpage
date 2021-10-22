@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-    <link rel="stylesheet" href="/stylesheets/star.css">
+    <link rel="stylesheet" href="/stylesheet/star.css">
 
 
     <div class="container ">
@@ -34,6 +34,7 @@
                     <h2>Leave a Review</h2>
                     <form action="/products/<%= product._id %>/reviews" method="POST" class="mb-3 validated-form"
                         novalidate>
+                        
                         <div class="mb-1">
                             <fieldset class="starability-basic">
                                 <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
