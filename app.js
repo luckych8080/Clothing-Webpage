@@ -8,6 +8,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ejsMate = require('ejs-mate');
 const productsRoutes = require('./routes/products');
+const reviewsRoutes = require('./routes/reviews');
 
 const ExpressError = require('../YelpCamp/utils/ExpressError');
 
@@ -73,27 +74,9 @@ app.get('/', function (req, res) {
 // })
 
 app.use("/products", productsRoutes);
+app.use("/products/:id/reviews", reviewsRoutes);
 
 
-app.post("/products/:id/reviews", async(req, res)=>{
-    const product = await Product.findById(req.params.id);
-    const review = new Review(req.body.review);
-    // review.author = req.user._id;
-    product.reviews.push(review);
-    console.log(product, review)
-    await review.save();
-    await product.save();
-    req.flash('success', 'Created new review!');
-    res.redirect(`/products/${product._id}`);
-})
-
-app.delete('/products/:id/reviews/:reviewId', (async (req, res) => {
-    const { id, reviewId } = req.params;
-    await Product.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-    await Review.findByIdAndDelete(reviewId);
-    req.flash('success', 'Successfully deleted review');
-    res.redirect(`/products/${id}`);
-}))
 
 app.all('*', (req, res, next)=>{
     next(new ExpressError('Page not found', 404));
