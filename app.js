@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Product = require('./models/product')
 const Review = require('./models/review');
-
+const session = require('express-session');
+const flash = require('connect-flash');
 const ejsMate = require('ejs-mate');
 const productsRoutes = require('./routes/products');
 
@@ -25,10 +26,31 @@ const app = express();
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public'))); 
+
+const sessionConfig = {
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+
+app.use(session(sessionConfig))
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 
 
 app.get('/', function (req, res) {
@@ -61,6 +83,7 @@ app.post("/products/:id/reviews", async(req, res)=>{
     console.log(product, review)
     await review.save();
     await product.save();
+    req.flash('success', 'Created new review!');
     res.redirect(`/products/${product._id}`);
 })
 
@@ -68,6 +91,7 @@ app.delete('/products/:id/reviews/:reviewId', (async (req, res) => {
     const { id, reviewId } = req.params;
     await Product.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Successfully deleted review');
     res.redirect(`/products/${id}`);
 }))
 
