@@ -1,18 +1,18 @@
-const { checkSchema } = require('express-validator');
+const Joi = require('joi');
+const { number } = require('joi');
 
-// module.exports.productSchema = checkSchema({
-//     product: checkSchema({
-//         title:{ 
-//             isString: true,
-//             exists: true},
-//         price: {
-//             exists: true,
-//             iisInt: true},
-//         location: {
-//             isString: true,
-//             exists: true},
-//         description: {
-//             isString: true,
-//             exists: true},
-//     })
-// })
+module.exports.productSchema = Joi.object({
+    product: Joi.object({
+        name: Joi.string().required(),
+        price: Joi.number().required().min(0),
+        image: Joi.string().required(),
+        description: Joi.string().required()
+    }).required()
+});
+
+module.exports.reviewSchema = Joi.object({
+    review: Joi.object({
+        rating: Joi.number().required().min(1).max(5),
+        body: Joi.string().required()
+    }).required()
+})

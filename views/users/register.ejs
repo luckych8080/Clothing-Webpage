@@ -1,32 +1,41 @@
 <% layout('layouts/boilerplate') %>
-
-<div class="container d-flex justify-content-center">
-    <div class="my-3">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Sign Up</h5>
-                <form action="">
-                    <div class="mb-3 ">
-                        <label for="username" class="col-form-label">Username</label>
-                        <div class="">
-                            <input type="text" class="form-control" id="username" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="mb-3 ">
-                        <label for="email" class="col-form-label">Email</label>
-                        <div class="">
-                            <input type="email" class="form-control" id="email" placeholder="email">
-                        </div>
-                    </div>
-                    <div class="mb-3 ">
-                        <label for="password" class=" col-form-label">Password</label>
-                        <div class="">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-success">Login</button>
-                </form>
-            </div>
+<div class="container d-flex justify-content-center my-3">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">Sign Up</h5>
+      <form action="/register" method="POST" class="validated-form" novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="username">Username</label>
+          <input
+            class="form-control"
+            type="text"
+            id="username"
+            name="username"
+            required
+          />
         </div>
+        <div class="mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input
+            class="form-control"
+            type="email"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input
+            class="form-control"
+            type="password"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        <button class="btn btn-success">Register</button>
+      </form>
     </div>
+  </div>
 </div>
