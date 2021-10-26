@@ -1,18 +1,14 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
-const ejsMate = require("ejs-mate");
+const ExpressError = require("./utils/ExpressError");
+const methodOverride = require("method-override");
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-
 const User = require("./models/user");
-const Product = require("./models/product");
-const Review = require("./models/review");
-
-const ExpressError = require("../YelpCamp/utils/ExpressError");
 
 const userRoutes = require("./routes/users");
 const productsRoutes = require("./routes/products");
