@@ -7,7 +7,7 @@ const {isLoggedIn} = require('../middleware');
 const ExpressError = require('../utils/ExpressError');
 const catchAsync = require('../utils/catchAsync');
 
-const validateproduct = (req, res, next) => {
+const validateProduct = (req, res, next) => {
     const { error } = productSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
@@ -26,7 +26,7 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('products/new');
 })
 
-router.post('/', isLoggedIn, validateproduct, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateProduct, catchAsync(async (req, res) => {
     const product = new Product(req.body.product);
     console.log(product);
     await product.save();
@@ -52,7 +52,7 @@ router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     res.render('products/edit', { product });
 }))
 
-router.put('/:id', isLoggedIn, validateproduct, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validateProduct, catchAsync(async (req, res) => {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
     req.flash('success', 'Successfully update Product!');
