@@ -15,6 +15,7 @@ const seedDB = async () => {
     for (let i = 0; i < 26; i++) {
         const price = Math.floor(Math.random() * 20) + 10;
         const product = new Product({
+            author: '6176f4d375c257552087f711',
             name: `${names[i].names}`,
             price,
             description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, nam! Excepturi ea amet tenetur illum eos porro esse non totam soluta nostrum unde ipsa, adipisci nihil asperiores iure reiciendis doloremque.',
