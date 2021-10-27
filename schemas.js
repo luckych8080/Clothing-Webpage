@@ -6,7 +6,11 @@ module.exports.productSchema = Joi.object({
         name: Joi.string().required(),
         price: Joi.number().required().min(0),
         // image: Joi.string().required(),
-        description: Joi.string().required()
+        description: Joi.string().required(),
+        size: Joi.string().required(),
+        wash: Joi.string().required(),
+        colour: Joi.string().required(),
+        material: Joi.string().required(),
     }).required(),
     deleteImages: Joi.array()
 });
