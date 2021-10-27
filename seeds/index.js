@@ -19,9 +19,13 @@ const seedDB = async () => {
             name: `${names[i].names}`,
             price,
             description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, nam! Excepturi ea amet tenetur illum eos porro esse non totam soluta nostrum unde ipsa, adipisci nihil asperiores iure reiciendis doloremque.',
+            size: "Vitoria is 5'8 & is wearing size XS Wash Care",
+            wash: "First wash dry clean. Thereafter hand-wash separately with mild liquid detergent. Avoid bleaching the garment. Line dry in shade to preserve colour.",
+            colour:  'Blue',
+            material: 'Cotton',
             images: [
                 {
-                    url: 'https://res.cloudinary.com/dszgvnjt0/image/upload/v1635334980/RedWay/mylmrmc9nqlute9ljn1t.jpg',                                  filename: 'RedWay/mylmrmc9nqlute9ljn1t'
+                    url: 'https://res.cloudinary.com/dszgvnjt0/image/upload/v1635334980/RedWay/mylmrmc9nqlute9ljn1t.jpg', filename: 'RedWay/mylmrmc9nqlute9ljn1t'
                 }
             ]
         })

@@ -20,6 +20,10 @@ const productSchema = new Schema({
     images: [ImageSchema],
     price: Number,
     description: String,
+    size: String,
+    wash: String,
+    colour: String,
+    material: String,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

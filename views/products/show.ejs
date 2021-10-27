@@ -37,10 +37,22 @@
       <div class="card-body">
         <h5 class="card-title"><%= product.name %></h5>
         <h3 class="card-text">&#8377;<%= product.price %></h3>
-        <li class="list-group-item">
-          Submitted by <%= product.author.username%>
-        </li>
-        <p class="card-text"><%= product.description %></p>
+        <p class="card-text">
+          <strong>Seller Name - </strong> <%= product.author.username%>
+        </p>
+        <p class="card-text"><strong>Description - </strong>
+          <%= product.description %></p>
+        <p class="card-text"><strong>Size and Fit - </strong>
+          <%= product.size %></p>
+        <p class="card-text"><strong>Wash Care - </strong>
+          <%= product.wash %></p>
+        <p class="card-text"><strong>Colour - </strong>
+          <%= product.colour %></p>
+        <p class="card-text"><strong>Material - </strong>
+          <%= product.material %></p>
+
+
+
 
         <% if( currentUser && product.author.equals(currentUser._id)) {%>
         <div class="d-flex justify-content-between">
