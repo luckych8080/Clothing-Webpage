@@ -59,10 +59,10 @@
     </div>
   </div>
 
+  <% if(currentUser){ %>
   <div class="d-flex justify-content-center mb-3">
     <div class="card" style="width: 18rem">
       <div class="card-body">
-        <% if(currentUser){ %>
         <h2>Leave a Review</h2>
         <form
           action="/products/<%= product._id %>/reviews"
@@ -131,10 +131,11 @@
           </div>
           <button class="btn btn-success">Submit</button>
         </form>
-        <% } %>
       </div>
     </div>
   </div>
+  <% } %>
+
   <div class="d-flex flex-column align-items-center mb-3">
     <% for(let review of product.reviews) { %>
     <div class="card mb-3">
