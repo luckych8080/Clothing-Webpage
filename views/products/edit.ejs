@@ -1,59 +1,109 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mb-3">
-    <div class="d-flex justify-content-center">
-        <div class="card" style="width: 25rem;">
-            <div class="card-body">
-                <h5 class="card-title">Edit Product</h5>
-                <form action="/products/<%=product._id%>?_method=PUT" method="POST" novalidate 
-                 class="validated-form" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name" name="product[name]" value="<%= product.name %>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <div class="input-group ">
-                            <span class="input-group-text">&#8377;</span>
-                            <input type="number" class="form-control" aria-label="Amount" name="product[price]" value="<%= product.price %>" required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control"  id="description" cols="30" rows="5"
-                            name="product[description]" required><%= product.description %></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-file custom-file">
-                            <input type="file" class="form-file-input" id="image" name="image" multiple>
-                            <label class="form-file-label" for="image">
-                                <span class="form-file-text custom-file-label">Add more image(s)...</span>
-                                <span class="form-file-button">Browse</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <h5> Delete Images </h5>
-                        <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
-                                    <% product.images.forEach((image, i) => { %>
-                                        <div class="col">
-                                            <div class="card">
-                                                <img class="card-img" src="<%= image.deleteThumbnail %>" alt="">
-                                                <div class="card-img-overlay text-end pt-1 pe-2">
-                                                    <label class="visually-hidden" for="image-<%= i %>">Delete Image</label>
-                                                    <input class="form-check-input" type="checkbox" name="deleteImages[]" value="<%= image.filename %>"  id="image-<%= i %>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <% }) %>
-                                </div>
-                    </div>
-                        <button class="btn btn-success">Submit</button>
-                </form>
-                <div class="my-3">
-                    <a class="btn btn-secondary" href="/products/<%=product._id%>">Cancel</a>
-                </div>
+  <div class="d-flex justify-content-center">
+    <div class="card" style="width: 25rem">
+      <div class="card-body">
+        <h5 class="card-title">Edit Product</h5>
+        <form
+          action="/products/<%=product._id%>?_method=PUT"
+          method="POST"
+          novalidate
+          class="validated-form"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Name"
+              name="product[name]"
+              value="<%= product.name %>"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group">
+              <span class="input-group-text">&#8377;</span>
+              <input
+                type="number"
+                class="form-control"
+                aria-label="Amount"
+                name="product[price]"
+                value="<%= product.price %>"
+                required
+              />
             </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              id="description"
+              cols="30"
+              rows="5"
+              name="product[description]"
+              required
+            >
+<%= product.description %></textarea
+            >
+          </div>
+          <div class="mb-3">
+            <div class="form-file custom-file">
+              <input
+                type="file"
+                class="form-file-input"
+                id="image"
+                name="image"
+                multiple
+              />
+              <label class="form-file-label" for="image">
+                <span class="form-file-text custom-file-label"
+                  >Add more image(s)...</span
+                >
+                <span class="form-file-button">Browse</span>
+              </label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <h5>Delete Images</h5>
+            <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
+              <% product.images.forEach((image, i) => { %>
+              <div class="col">
+                <div class="card">
+                  <img
+                    class="card-img"
+                    src="<%= image.deleteThumbnail %>"
+                    alt=""
+                  />
+                  <div class="card-img-overlay text-end pt-1 pe-2">
+                    <label class="visually-hidden" for="image-<%= i %>"
+                      >Delete Image</label
+                    >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      name="deleteImages[]"
+                      value="<%= image.filename %>"
+                      id="image-<%= i %>"
+                    />
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
+          <button class="btn btn-success">Submit</button>
+        </form>
+        <div class="my-3">
+          <a class="btn btn-secondary" href="/products/<%=product._id%>"
+            >Cancel</a
+          >
         </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -4,29 +4,33 @@
 <div>
   <a href="/products/new" class="btn btn-secondary px-2">New Product</a>
 </div>
-<% for (let product of products){%>
-<div class="card" mb-3 style="width: 25rem;">
 
-  <div class="row">
-            <div class="col-md-6">
-                <%if(product.images.length) {%>
-                <img class="img-fluid" alt="" src="<%=product.images[0].thumbnail%>">
-                <% }else {%>
-                <img class="img-fluid" alt=""
-                    src='https://res.cloudinary.com/dszgvnjt0/image/upload/h_400/v1635335757/RedWay/disfiyvcce8l6ay3xqe4.jpg'>
-                <% } %>
-            </div>
+<div class="row g-3 mb-3">
+  <% for (let product of products){%>
 
-    <div class="col-md-6">
-      <div class="card-body">
-        <h5 class="card-title"><%= product.name %></h5>
-        
+  <div class="col-6 col-lg-4 d-flex flex-column align-items-center">
+    <div class="card">
+      <a
+        href="/products/<%=product._id%>"
+        class="text-dark text-decoration-none"
+      >
+        <%if(product.images.length) {%>
+        <img class="img-fluid" alt="" src="<%=product.images[0].thumbnail%>" />
+        <% }else {%>
+        <img
+          class="img-fluid"
+          alt=""
+          src="https://res.cloudinary.com/dszgvnjt0/image/upload/h_400/v1635335757/RedWay/disfiyvcce8l6ay3xqe4.jpg"
+        />
+        <% } %>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
           <h3 class="card-text">&#8377; <%= product.price %></h3>
-        <a class="btn btn-primary" href="/products/<%=product._id%>"
-          >View <%=product.name%></a
-        >
-      </div>
+        </div>
+      </a>
     </div>
   </div>
+
+  <% }%>
 </div>
-<% }%>
