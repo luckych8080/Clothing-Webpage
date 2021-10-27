@@ -1,42 +1,72 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mb-3">
-    <div class="d-flex justify-content-center">
-        <div class="card" style="width: 25rem;">
-            <div class="card-body">
-                <h5 class="card-title">New Product</h5>
+  <div class="d-flex justify-content-center">
+    <div class="card" style="width: 25rem">
+      <div class="card-body">
+        <h5 class="card-title">New Product</h5>
 
-                <form action="/products" method="POST" novalidate 
-                 class="validated-form" >
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name" name="product[name]"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <div class="input-group ">
-                            <span class="input-group-text">&#8377;</span>
-                            <input type="number" class="form-control" aria-label="Amount" name="product[price]"
-                                required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control"  id="description" cols="30" rows="5"
-                            name="product[description]" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="images" class="form-label">Images</label>
-                        <input type="text" id="images" class="form-control" name="product[image]" required>
-                    </div>
-                        <button class="btn btn-success">Submit</button>
-                </form>
-
-                <div class="my-3">
-                    <a class="btn btn-secondary" href="/products">Cancel</a>
-                </div>
+        <form
+          action="/products"
+          method="POST"
+          novalidate
+          class="validated-form"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Name"
+              name="product[name]"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group">
+              <span class="input-group-text">&#8377;</span>
+              <input
+                type="number"
+                class="form-control"
+                aria-label="Amount"
+                name="product[price]"
+                required
+              />
             </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              id="description"
+              cols="30"
+              rows="5"
+              name="product[description]"
+              required
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Choose image(s)...</label>
+            <input
+              class="form-control"
+              type="file"
+              id="image"
+              name="image"
+              multiple
+            />
+          </div>
+
+          <button class="btn btn-success">Submit</button>
+        </form>
+
+        <div class="my-3">
+          <a class="btn btn-secondary" href="/products">Cancel</a>
         </div>
+      </div>
     </div>
+  </div>
 </div>

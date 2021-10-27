@@ -19,7 +19,11 @@ const seedDB = async () => {
             name: `${names[i].names}`,
             price,
             description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, nam! Excepturi ea amet tenetur illum eos porro esse non totam soluta nostrum unde ipsa, adipisci nihil asperiores iure reiciendis doloremque.',
-            images: "https://images.unsplash.com/photo-1634624833042-d6a6fb7a0358?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60"
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/dszgvnjt0/image/upload/v1635334980/RedWay/mylmrmc9nqlute9ljn1t.jpg',                                  filename: 'RedWay/mylmrmc9nqlute9ljn1t'
+                }
+            ]
         })
         await product.save();
     }
