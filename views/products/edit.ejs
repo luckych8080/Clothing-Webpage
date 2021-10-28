@@ -39,6 +39,16 @@
             </div>
           </div>
 
+          <div class="mb-3">
+            <label for="category">Select Category</label>
+            <select name="product[category]" id="category">
+            <% for(let category of categories) { %>
+                <option value="<%= category %>" <%=product.category===category ? 'selected' : '' %>>
+                    <%= category %>
+                </option>
+                <% } %>
+            </select>
+          </div>
 
           <div class="mb-3">
             <label for="size" class="form-label">Size</label>
@@ -95,8 +105,7 @@
               rows="5"
               name="product[description]"
               required
-            >
-<%= product.description %></textarea
+            ><%= product.description %></textarea
             >
           </div>
           <div class="mb-3">
