@@ -11,6 +11,10 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/h_400');
 });
 
+ImageSchema.virtual('showThumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/h_500');
+});
+
 ImageSchema.virtual('deleteThumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
@@ -38,7 +42,11 @@ const productSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
+    // cart: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Cart'
+    // }
 });
 
 productSchema.post('findOneAndDelete', async function (doc) {
