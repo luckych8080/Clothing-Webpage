@@ -24,6 +24,11 @@ const productSchema = new Schema({
     wash: String,
     colour: String,
     material: String,
+    category: {
+        type: String,
+        lowercase: true,
+        enum: ['men', 'women', 'kids']
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

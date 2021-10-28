@@ -37,7 +37,17 @@
               />
             </div>
           </div>
-          
+
+          <div class="mb-3">
+            <label for="category">Select Category</label>
+            <select name="product[category]" id="category">
+                <% for(let category of categories) { %>
+                    <option value="<%= category %>">
+                        <%= category %>
+                    </option>
+                    <% } %>
+            </select>
+          </div>
 
           <div class="mb-3">
             <label for="size" class="form-label">Size</label>

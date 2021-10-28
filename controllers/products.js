@@ -1,13 +1,25 @@
 const Product = require('../models/product');
 const { cloudinary } = require("../cloudinary");
 
+const categories = ['men', 'women', 'kids'];
+
+
 module.exports.index = async (req, res) => {
-    const products = await Product.find({});
-    res.render('products/index', { products });
+    const { category } = req.query;
+    if (category) {
+        const products = await Product.find({ category });
+        res.render('products/index', { products, category })
+    } else {
+        const products = await Product.find({});
+        res.render('products/index', { products })
+    }
+
+    // const products = await Product.find({});
+    // res.render('products/index', { products });
 };
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('products/new');
+    res.render('products/new' , {categories});
 };
 
 module.exports.createProduct = async (req, res, next) => {
@@ -17,7 +29,7 @@ module.exports.createProduct = async (req, res, next) => {
     await product.save();
     console.log(product, product.images)
     req.flash('success', 'Successfully made a new product!');
-    res.redirect(`/products/${product._id}`)
+    res.redirect(`/products/${product._id}` )
 };
 
 module.exports.showProduct = async (req, res) => {
@@ -40,7 +52,7 @@ module.exports.renderEditForm = async (req, res) => {
         req.flash('error', 'Cannot find that Product!')
         return res.redirect('/products');
     }
-    res.render('products/edit', { product });
+    res.render('products/edit', { product, categories });
 };
 
 module.exports.updateProduct = async (req, res) => {

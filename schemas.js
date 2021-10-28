@@ -11,6 +11,7 @@ module.exports.productSchema = Joi.object({
         wash: Joi.string().required(),
         colour: Joi.string().required(),
         material: Joi.string().required(),
+        category: Joi.string().required(),
     }).required(),
     deleteImages: Joi.array()
 });

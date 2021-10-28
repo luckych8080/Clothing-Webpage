@@ -6,11 +6,22 @@
     <div class="card" style="width: 18rem">
       <div id="productcarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <% product.images.forEach((img, i)=> { %>
-          <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-            <img src="<%= img.url%>" class="d-block w-100" alt="..." />
-          </div>
-          <% }) %>
+          <%if(product.images.length) {%>
+            
+              <% product.images.forEach((img, i)=> { %>
+              <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+              <img src="<%= img.url%>" class="d-block w-100" alt="..." />
+              </div>
+              <% }) %>
+
+           <% }else {%>
+          <img
+            class="img-fluid"
+            alt=""
+            src="https://res.cloudinary.com/dszgvnjt0/image/upload/h_400/v1635397851/RedWay/download_wrdoma.png"
+          />
+          <% } %>
+          
         </div>
         <% if(product.images.length> 1) { %>
         <button
@@ -38,21 +49,26 @@
         <h5 class="card-title"><%= product.name %></h5>
         <h3 class="card-text">&#8377;<%= product.price %></h3>
         <p class="card-text">
+          <strong>Category:- </strong> <%= product.category %>
+        </p>
+        <p class="card-text">
           <strong>Seller Name - </strong> <%= product.author.username%>
         </p>
-        <p class="card-text"><strong>Description - </strong>
-          <%= product.description %></p>
-        <p class="card-text"><strong>Size and Fit - </strong>
-          <%= product.size %></p>
-        <p class="card-text"><strong>Wash Care - </strong>
-          <%= product.wash %></p>
-        <p class="card-text"><strong>Colour - </strong>
-          <%= product.colour %></p>
-        <p class="card-text"><strong>Material - </strong>
-          <%= product.material %></p>
-
-
-
+        <p class="card-text">
+          <strong>Description - </strong> <%= product.description %>
+        </p>
+        <p class="card-text">
+          <strong>Size and Fit - </strong> <%= product.size %>
+        </p>
+        <p class="card-text">
+          <strong>Wash Care - </strong> <%= product.wash %>
+        </p>
+        <p class="card-text">
+          <strong>Colour - </strong> <%= product.colour %>
+        </p>
+        <p class="card-text">
+          <strong>Material - </strong> <%= product.material %>
+        </p>
 
         <% if( currentUser && product.author.equals(currentUser._id)) {%>
         <div class="d-flex justify-content-between">
