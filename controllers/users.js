@@ -11,7 +11,7 @@ module.exports.createUser = async (req, res, next) => {
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {
       if (err) return next(err);
-      req.flash("success", "Welcome to Red!");
+      req.flash("success", "Welcome to Sell-U-Cloth!");
       res.redirect("/products");
     });
   } catch (e) {
@@ -25,7 +25,7 @@ module.exports.renderLoginForm = (req, res) => {
 };
 
 module.exports.loginUser = (req, res) => {
-  req.flash("success", "welcome back!");
+  req.flash("success", "Welcome back!");
   const redirectUrl = req.session.returnTo || "/products";
   delete req.session.returnTo;
   res.redirect(redirectUrl);

@@ -17,9 +17,11 @@ const User = require("./models/user");
 const userRoutes = require("./routes/users");
 const productsRoutes = require("./routes/products");
 const reviewsRoutes = require("./routes/reviews");
-
+const MongoStore = require("connect-mongo");
 
 const dbUrl = "mongodb://localhost:27017/anythingsell";
+// const dbUrl = process.env.DB_URL;
+
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -39,7 +41,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const store =  MongoStore.create({
+  mongoUrl: dbUrl,
+  secret: "secret",
+  touchAfter: 24 * 60 * 60
+})
+
+store.on("error", function (e){
+  console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
+  name: 'session',
   secret: "secret",
   resave: false,
   saveUninitialized: true,
@@ -88,3 +101,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Serving on https://localhost:${port}`);
 });
+
