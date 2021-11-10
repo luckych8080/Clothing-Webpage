@@ -29,7 +29,6 @@ db.once("open", () => {
   console.log("Database connected");
 });
 
-const port = 8080;
 const app = express();
 
 app.engine("ejs", ejsMate);
@@ -98,6 +97,9 @@ app.use((err, req, res, next) => {
   if (!err.message) err.message = "Oh No, Something went wrong!!";
   res.status(statusCode).render("error", { err });
 });
+
+
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
   console.log(`Serving on https://localhost:${port}`);
