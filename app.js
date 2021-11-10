@@ -19,8 +19,7 @@ const productsRoutes = require("./routes/products");
 const reviewsRoutes = require("./routes/reviews");
 const MongoStore = require("connect-mongo");
 
-const dbUrl = "mongodb://localhost:27017/anythingsell";
-// const dbUrl = process.env.DB_URL;
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/anythingsell";
 
 mongoose.connect(dbUrl);
 
@@ -41,9 +40,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const secret = process.env.SECRET || "secret";
+
 const store =  MongoStore.create({
   mongoUrl: dbUrl,
-  secret: "secret",
+  secret,
   touchAfter: 24 * 60 * 60
 })
 
@@ -53,7 +54,7 @@ store.on("error", function (e){
 
 const sessionConfig = {
   name: 'session',
-  secret: "secret",
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
