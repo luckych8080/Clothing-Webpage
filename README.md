@@ -15,7 +15,6 @@ Snapshots of the project 👇
 ![Alt Text](__snapshot__/s6.png)
 ![Alt Text](__snapshot__/s7.png)
 ![Alt Text](__snapshot__/s8.png)
-![Alt Text](__snapshot__/s9.png)
 ![Alt Text](__snapshot__/sm1.png)
 ![Alt Text](__snapshot__/sm2.png)
 ![Alt Text](__snapshot__/sm3.png)
